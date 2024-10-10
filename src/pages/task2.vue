@@ -1,8 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
+  <div class="flex flex-col items-center">
+    <Icon
+      name="v-icon:klerk"
+      class="text-4xl"
+    />
     <h1>Подписки «Клерка»</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, deserunt!</p>
+
+    <Mailing />
   </div>
 </template>

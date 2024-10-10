@@ -3,5 +3,18 @@
 @tailwind utilities;
 
 h1 {
-  @apply text-[56px] font-semibold;
+  @apply text-center text-3xl font-semibold md:text-6xl;
+}
+h2 {
+  @apply text-2xl font-semibold;
+}
+
+.btn {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-full bg-blue-500 px-8 py-4 text-white transition-all;
+  &:hover {
+    @apply bg-blue-600;
+  }
+  &:active {
+    @apply scale-95 bg-blue-700;
+  }
 }
