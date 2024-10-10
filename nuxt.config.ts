@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/icon"],
   srcDir: "./src",
+  dir: {
+    layouts: "app/layout",
+  },
   icon: {
     customCollections: [
       {
@@ -12,6 +15,7 @@ export default defineNuxtConfig({
       },
     ],
   },
+
   vite: {
     css: {
       preprocessorOptions: {

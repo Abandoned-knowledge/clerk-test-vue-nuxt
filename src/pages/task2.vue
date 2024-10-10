@@ -1,9 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>hello</h1>
-  <Icon
-    name="v-icon:klerk"
-    class="text-[36px]"
-  />
+  <div>
+    <h1>Подписки «Клерка»</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, deserunt!</p>
+  </div>
 </template>
