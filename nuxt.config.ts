@@ -2,9 +2,16 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  ssr: false,
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/icon"],
   srcDir: "./src",
+  icon: {
+    customCollections: [
+      {
+        prefix: "v-icon",
+        dir: "./src/shared/icons",
+      },
+    ],
+  },
   vite: {
     css: {
       preprocessorOptions: {
