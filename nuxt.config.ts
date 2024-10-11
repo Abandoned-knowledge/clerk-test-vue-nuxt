@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@pinia/nuxt"],
   srcDir: "./src",
-  ssr: false,
   dir: {
     layouts: "app/layout",
   },
