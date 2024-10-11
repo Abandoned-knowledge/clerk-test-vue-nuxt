@@ -6,7 +6,7 @@
 
 <template>
   <section class="bg-gray-100 px-6 py-12 lg:w-[70%] lg:rounded-xl">
-    <header class="px-6">
+    <header class="lg:px-6">
       <h2>Выберите рассылки, которые подходят именно вам</h2>
       <MailingTabsFirstInput />
       <label class="mt-4 inline-flex cursor-pointer items-center gap-2">
