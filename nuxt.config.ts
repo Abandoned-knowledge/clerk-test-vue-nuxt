@@ -17,6 +17,9 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    server: {
+      hmr: false,
+    },
     css: {
       preprocessorOptions: {
         scss: {

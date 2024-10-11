@@ -3,7 +3,7 @@
 <template>
   <div class="relative mt-4">
     <input
-      type="text"
+      type="email"
       placeholder="Электронная почта"
       class="w-[95%] rounded-lg p-4"
     />

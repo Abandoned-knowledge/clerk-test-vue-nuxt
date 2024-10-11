@@ -8,6 +8,9 @@ h1 {
 h2 {
   @apply text-2xl font-semibold;
 }
+h3 {
+  @apply text-xl font-semibold;
+}
 
 .btn {
   @apply inline-flex cursor-pointer items-center justify-center rounded-full bg-blue-500 px-8 py-4 text-white transition-all;
@@ -17,4 +20,29 @@ h2 {
   &:active {
     @apply scale-95 bg-blue-700;
   }
+}
+
+.toggle {
+  --h: 16px;
+  --circle-size: 0.85;
+  --circle-h: calc(var(--h) * var(--circle-size));
+  --padding: calc(var(--circle-h) * 0.1);
+
+  @apply relative inline-flex aspect-[2/1] h-[var(--h)] cursor-pointer appearance-none items-center rounded-full bg-gray-300;
+  &:checked {
+    @apply bg-blue-500;
+  }
+
+  &::after {
+    content: "";
+    @apply absolute contents aspect-square h-[var(--circle-h)] rounded-full bg-white transition-all;
+    left: var(--padding);
+  }
+  &:checked::after {
+    left: calc(100% - var(--circle-h) - var(--padding));
+  }
+}
+
+.toggle-lg {
+  --h: 24px;
 }
