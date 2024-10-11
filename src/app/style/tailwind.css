@@ -22,23 +22,32 @@ h3 {
   }
 }
 
+:root {
+  --h: 16px;
+  --circle-size: 0.8;
+  --circle-h: calc(var(--h) * var(--circle-size));
+  --padding: calc(var(--circle-h) * 0.15);
+}
+
 .toggle {
   --h: 16px;
-  --circle-size: 0.85;
+  --circle-size: 0.8;
   --circle-h: calc(var(--h) * var(--circle-size));
-  --padding: calc(var(--circle-h) * 0.1);
-
-  @apply relative inline-flex aspect-[2/1] h-[var(--h)] cursor-pointer appearance-none items-center rounded-full bg-gray-300;
-  &:checked {
-    @apply bg-blue-500;
+  --padding: calc(var(--circle-h) * 0.15);
+  @apply relative inline-flex cursor-pointer items-center;
+  input {
+    @apply aspect-[2/1] h-[var(--h)] cursor-[inherit] appearance-none rounded-full bg-gray-300;
+    &:checked {
+      @apply bg-blue-500;
+    }
   }
 
-  &::after {
-    content: "";
-    @apply absolute contents aspect-square h-[var(--circle-h)] rounded-full bg-white transition-all;
+  div {
+    @apply absolute aspect-square h-[var(--circle-h)] rounded-full bg-white transition-all;
     left: var(--padding);
   }
-  &:checked::after {
+
+  input:checked + div {
     left: calc(100% - var(--circle-h) - var(--padding));
   }
 }

@@ -5,7 +5,6 @@ export default {
     extend: {},
     container: {
       center: true,
-      padding: 10,
     },
   },
   plugins: [],
