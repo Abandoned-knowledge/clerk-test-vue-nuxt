@@ -5,6 +5,7 @@ import imgPath4 from "~/shared/img/img-4.svg";
 
 export default [
   {
+    id: 1,
     period: "Перед рассветом",
     title: "Утренний бухгалтер",
     subtitle: "Самые важные новости и события за день. Кратко, по делу, структурировано.",
@@ -13,6 +14,7 @@ export default [
     receiversCount: "59 342",
   },
   {
+    id: 2,
     period: "После заката",
     title: "Ночной бухгалтер",
     subtitle: "Самая краткая газета о налогах и бухучете в мире — современная рассылка для чтения.",
@@ -21,6 +23,7 @@ export default [
     receiversCount: "37 480",
   },
   {
+    id: 3,
     period: "Раз в две недели",
     title: "Ножницы скидок",
     subtitle: "Подборка самых выгодных и полезных спецпредложений от надежных компаний.",
@@ -29,6 +32,7 @@ export default [
     receiversCount: "92 118",
   },
   {
+    id: 4,
     period: "По мере появления анонсов",
     title: "Чемодан вебинаров",
     subtitle:

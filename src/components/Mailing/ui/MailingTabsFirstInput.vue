@@ -6,6 +6,7 @@
       type="email"
       placeholder="Электронная почта"
       class="w-[95%] rounded-lg p-4"
+      required
     />
     <button class="btn absolute right-0">
       <span>Подписаться</span>

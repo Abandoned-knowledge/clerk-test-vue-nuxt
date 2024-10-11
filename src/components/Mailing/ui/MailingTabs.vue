@@ -1,28 +1,6 @@
 <script setup lang="ts">
-  import MailingTabsFirst from "./MailingTabsFirst.vue";
-  import MailingTabsTwo from "./MailingTabsTwo.vue";
-  import MailingTabsThree from "./MailingTabsThree.vue";
-
-  const currentContent = shallowRef<Component>(MailingTabsFirst);
-
-  const tabs = [
-    {
-      label: "Рассылки",
-      checked: true,
-      component: MailingTabsFirst,
-    },
-    {
-      label: "Соцсети",
-      checked: false,
-      component: MailingTabsTwo,
-    },
-    {
-      label: "Мессенджеры",
-      checked: false,
-      component: MailingTabsThree,
-    },
-  ];
-
+  import tabs from "../model/tabs";
+  const currentContent = shallowRef<Component>(tabs[0].component);
   function handleTabSwitch(component: Component) {
     if (typeof component == "object") currentContent.value = component;
   }

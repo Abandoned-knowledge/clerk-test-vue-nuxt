@@ -8,6 +8,17 @@
     imagePath: string;
   }
   const props = defineProps<props>();
+
+  const isAllChecked = () => {
+    const allToggleInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+      "#mailing_form .toggle input",
+    );
+
+    const firstInput = Array.from(allToggleInputs)[0];
+    const otherInputs = Array.from(allToggleInputs).slice(1);
+
+    firstInput.checked = otherInputs.every((input) => input.checked);
+  };
 </script>
 
 <template>
@@ -35,7 +46,10 @@
     </div>
     <footer class="mt-auto">
       <label class="mt-5 flex items-center gap-2 text-sm">
-        <div class="toggle toggle-lg">
+        <div
+          class="toggle toggle-lg"
+          @change="isAllChecked"
+        >
           <input type="checkbox" />
           <div></div>
         </div>
