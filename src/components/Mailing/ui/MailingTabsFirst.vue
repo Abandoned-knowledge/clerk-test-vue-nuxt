@@ -29,7 +29,7 @@
   <form
     id="mailing_form"
     @submit.prevent="submitForm"
-    class="bg-gray-100 px-6 py-12 lg:w-[70%] lg:rounded-xl"
+    class="bg-gray-100 px-6 py-12 lg:w-[80%] lg:rounded-xl xl:w-[70%]"
   >
     <header class="lg:px-6">
       <h2>Выберите рассылки, которые подходят именно вам</h2>

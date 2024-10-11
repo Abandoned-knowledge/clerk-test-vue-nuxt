@@ -1,16 +1,22 @@
 <script setup lang="ts">
   import tabs from "../model/tabs";
+  import { type tabItem } from "..";
   const currentContent = shallowRef<Component>(tabs[0].component);
-  function handleTabSwitch(component: Component) {
-    if (typeof component == "object") currentContent.value = component;
+  const bcStore = useBreadcrumbsStore();
+
+  function handleTabSwitch(obj: tabItem) {
+    if (typeof obj.component == "object") currentContent.value = obj.component;
+    bcStore.replaceLastCrumb({ label: obj.label, path: obj.path });
   }
+  onMounted(() => bcStore.addCrumb({ label: "Рассылки", path: "mailing" }));
+  onUnmounted(() => bcStore.deleteLastCrumb());
 </script>
 
 <template>
   <div class="mt-10 flex gap-5">
     <label
       v-for="tab in tabs"
-      @change="handleTabSwitch(tab.component)"
+      @change="handleTabSwitch(tab)"
     >
       {{ tab.label }}
       <input

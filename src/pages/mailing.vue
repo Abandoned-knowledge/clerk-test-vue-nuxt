@@ -9,8 +9,8 @@
       />
     </NuxtLink>
 
-    <h1>Подписки «Клерка»</h1>
-
+    <BreadCrumbs />
+    <h1 class="mt-6">Подписки «Клерка»</h1>
     <Mailing />
   </div>
 </template>

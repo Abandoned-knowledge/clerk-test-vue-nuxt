@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template>three</template>
+<template>
+  <p>Мессенджеры</p>
+</template>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template>two</template>
+<template>
+  <p>Соцсети</p>
+</template>
 
 <style lang="scss" scoped></style>
