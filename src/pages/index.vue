@@ -29,10 +29,7 @@
       </div>
     </header>
 
-    <ul
-      class="folder"
-      :class="{ folder_open: folderIsOpen }"
-    >
+    <ul class="folder">
       <li class="flex items-center gap-2">
         <button
           class="button !gap-5 !px-3"
@@ -55,24 +52,15 @@
 
       <ul
         v-else
-        class="mt-4 hidden flex-col gap-2"
+        class="mt-4 flex-col gap-2"
+        :class="folderIsOpen ? 'flex' : 'hidden'"
       >
         <TreeView
           v-for="item in treeViewData"
-          :key="item.id"
-          :id="item.id"
-          :title="item.title"
-          :url="item.url"
-          :count="item.count"
-          :children="item.children"
+          :rubric="item"
+          :is-checked="false"
         />
       </ul>
     </ul>
   </div>
 </template>
-
-<style lang="scss" scoped>
-  .folder.folder_open > ul {
-    @apply flex;
-  }
-</style>

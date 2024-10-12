@@ -1,44 +1,43 @@
 <script setup lang="ts">
   interface Props {
-    id: number;
-    title: string;
-    url: string;
-    children?: Props[];
-    count: number;
-    isChecked?: boolean;
+    rubric: RubricItem;
+    isChecked: boolean;
   }
 
-  const props = withDefaults(defineProps<Props>(), {
-    isChecked: false,
-  });
+  const { rubric, isChecked } = defineProps<Props>();
 
-  const hasChildren = computed(() => props.children && props.children.length > 0);
-  const rubricsStore = useRubricStore();
+  const hasChildren = computed(() => rubric.children && rubric.children.length > 0);
+  const rubricStore = useRubricStore();
   const folderIsOpen = ref<boolean>(false);
 
-  const checked = ref(props.isChecked);
+  const checked = ref(isChecked);
 
   const countSumm = computed(() => {
-    const childSumm = props.children?.reduce((accum, curr) => accum + curr.count, 0) || 0;
-    return props.count + childSumm;
+    const childSumm = rubric.children?.reduce((accum, curr) => accum + curr.count, 0) || 0;
+    return rubric.count + childSumm;
   });
 
-  const plus = () => (rubricsStore.totalCountSumm += countSumm.value);
-  const minus = () => (rubricsStore.totalCountSumm -= countSumm.value);
+  const title = computed(() => `${rubric.title} (${rubric.count}, ${countSumm.value})`);
+
+  const plus = () => (rubricStore.totalCountSumm += rubric.count);
+  const minus = () => (rubricStore.totalCountSumm -= rubric.count);
 
   watch(
-    () => props.isChecked,
+    () => isChecked,
     (newVal) => (checked.value = newVal),
   );
 
   watch(checked, (newValue) => (newValue ? plus() : minus()));
+
+  onMounted(() => {
+    if (isChecked) plus();
+  });
 </script>
 
 <template>
   <ul
-    class="folder flex flex-col gap-2"
-    :class="{ folder_open: folderIsOpen }"
     v-if="hasChildren"
+    class="folder flex flex-col gap-2"
   >
     <li class="flex items-center gap-2">
       <button
@@ -53,10 +52,10 @@
 
       <a
         class="text font-semibold"
-        :href="`https://www.klerk.ru${props.url}`"
+        :href="`https://www.klerk.ru${rubric.url}`"
         target="_blank"
       >
-        {{ props.title }} ({{ props.count }}, {{ countSumm }})
+        {{ title }}
       </a>
       <input
         class="cursor-pointer"
@@ -66,15 +65,10 @@
     </li>
 
     <TreeView
-      class="folder_content hidden gap-2 pl-4"
-      v-if="hasChildren"
-      v-for="child in props.children"
-      :key="child.id"
-      :id="child.id"
-      :title="child.title"
-      :url="child.url"
-      :count="child.count"
-      :children="child.children"
+      class="gap-2 pl-4"
+      :class="folderIsOpen ? 'flex' : 'hidden'"
+      v-for="child in rubric.children"
+      :rubric="child"
       :is-checked="checked"
     />
   </ul>
@@ -82,10 +76,10 @@
   <li v-else>
     <a
       class="text ml-7"
-      :href="`https://www.klerk.ru${props.url}`"
+      :href="`https://www.klerk.ru${rubric.url}`"
       target="_blank"
     >
-      {{ props.title }} ({{ props.count }}, {{ countSumm }})
+      {{ title }}
     </a>
 
     <input
@@ -102,13 +96,5 @@
     &:hover {
       @apply text-blue-500;
     }
-  }
-
-  .header {
-    @apply flex cursor-pointer items-center justify-between gap-3 rounded bg-slate-500 p-1 text-white;
-  }
-
-  .folder.folder_open > .folder_content {
-    @apply flex;
   }
 </style>
