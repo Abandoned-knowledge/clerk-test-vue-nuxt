@@ -5,12 +5,8 @@
   const treeViewData = computed(() =>
     allowEmpty.value ? rubricStore.rubricsAllowEmpty : rubricStore.rubrics,
   );
-  onMounted(() => rubricStore.fetchRubrics());
 
-  function openFolder(event: Event) {
-    const folder = (event.currentTarget as HTMLElement).closest(".folder");
-    folder?.classList.toggle("folder_open");
-  }
+  onMounted(() => rubricStore.fetchRubrics());
 </script>
 
 <template>
@@ -32,12 +28,12 @@
       </div>
     </header>
 
-    <ul class="folder">
+    <ul
+      class="folder"
+      :class="{ folder_open: allowEmpty }"
+    >
       <li class="flex items-center gap-2">
-        <button
-          @click="openFolder($event)"
-          class="button !gap-5 !px-3"
-        >
+        <button class="button !gap-5 !px-3">
           Рубрики
           <Icon
             name="ep:arrow-down-bold"
@@ -45,7 +41,18 @@
           />
         </button>
       </li>
-      <ul class="mt-4 hidden flex-col gap-2">
+      <div
+        v-if="!treeViewData"
+        class="flex items-center gap-2"
+      >
+        <p>Получение данных...</p>
+        <div class="loader"></div>
+      </div>
+
+      <ul
+        v-else
+        class="mt-4 hidden flex-col gap-2"
+      >
         <TreeView
           v-for="item in treeViewData"
           :key="item.id"

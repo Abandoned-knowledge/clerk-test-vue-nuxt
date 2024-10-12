@@ -7,22 +7,17 @@
     count: number;
   }
 
-  const rubricsStore = useRubricStore();
   const props = defineProps<Props>();
-  const hasChildren = computed(() => props.children && props.children.length > 0);
 
+  const hasChildren = computed(() => props.children && props.children.length > 0);
+  const rubricsStore = useRubricStore();
+  const folderIsOpen = ref<boolean>(false);
   const checked = ref<boolean>(false);
 
   const countSumm = computed(() => {
-    const summ = props.children?.reduce((accum, curr) => accum + curr.count, 0);
-    return summ ? props.count + summ : props.count;
+    const childSumm = props.children?.reduce((accum, curr) => accum + curr.count, 0) || 0;
+    return props.count + childSumm;
   });
-
-  function openFolder(event: Event) {
-    const target = event.currentTarget as HTMLElement;
-    const folder = target.closest(".folder") as HTMLElement;
-    folder?.classList.toggle("folder_open");
-  }
 
   watch(checked, () => {
     checked.value
@@ -34,11 +29,12 @@
 <template>
   <ul
     class="folder flex flex-col gap-2"
+    :class="{ folder_open: folderIsOpen }"
     v-if="hasChildren"
   >
     <li class="flex items-center gap-2">
       <button
-        @click="openFolder($event)"
+        @click="folderIsOpen = !folderIsOpen"
         class="button"
       >
         <Icon
