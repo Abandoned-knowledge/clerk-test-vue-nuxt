@@ -1,6 +1,7 @@
 <script setup lang="ts">
   const rubricStore = useRubricStore();
   const allowEmpty = ref<boolean>(true);
+  const folderIsOpen = ref<boolean>(true);
 
   const treeViewData = computed(() =>
     allowEmpty.value ? rubricStore.rubricsAllowEmpty : rubricStore.rubrics,
@@ -30,10 +31,13 @@
 
     <ul
       class="folder"
-      :class="{ folder_open: allowEmpty }"
+      :class="{ folder_open: folderIsOpen }"
     >
       <li class="flex items-center gap-2">
-        <button class="button !gap-5 !px-3">
+        <button
+          class="button !gap-5 !px-3"
+          @click="folderIsOpen = !folderIsOpen"
+        >
           Рубрики
           <Icon
             name="ep:arrow-down-bold"

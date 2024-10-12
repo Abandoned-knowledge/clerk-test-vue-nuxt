@@ -5,25 +5,33 @@
     url: string;
     children?: Props[];
     count: number;
+    isChecked?: boolean;
   }
 
-  const props = defineProps<Props>();
+  const props = withDefaults(defineProps<Props>(), {
+    isChecked: false,
+  });
 
   const hasChildren = computed(() => props.children && props.children.length > 0);
   const rubricsStore = useRubricStore();
   const folderIsOpen = ref<boolean>(false);
-  const checked = ref<boolean>(false);
+
+  const checked = ref(props.isChecked);
 
   const countSumm = computed(() => {
     const childSumm = props.children?.reduce((accum, curr) => accum + curr.count, 0) || 0;
     return props.count + childSumm;
   });
 
-  watch(checked, () => {
-    checked.value
-      ? (rubricsStore.totalCountSumm += countSumm.value)
-      : (rubricsStore.totalCountSumm -= countSumm.value);
-  });
+  const plus = () => (rubricsStore.totalCountSumm += countSumm.value);
+  const minus = () => (rubricsStore.totalCountSumm -= countSumm.value);
+
+  watch(
+    () => props.isChecked,
+    (newVal) => (checked.value = newVal),
+  );
+
+  watch(checked, (newValue) => (newValue ? plus() : minus()));
 </script>
 
 <template>
@@ -67,6 +75,7 @@
       :url="child.url"
       :count="child.count"
       :children="child.children"
+      :is-checked="checked"
     />
   </ul>
 
