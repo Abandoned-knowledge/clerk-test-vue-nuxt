@@ -1,15 +1,18 @@
 <script setup lang="ts">
-  interface TreeViewItem {
+  interface Props {
     id: number;
     title: string;
     url: string;
-    children?: TreeViewItem[];
+    children?: Props[];
     count: number;
   }
 
-  const props = defineProps<TreeViewItem>();
-
+  const rubricsStore = useRubricStore();
+  const props = defineProps<Props>();
   const hasChildren = computed(() => props.children && props.children.length > 0);
+
+  const checked = ref<boolean>(false);
+
   const countSumm = computed(() => {
     const summ = props.children?.reduce((accum, curr) => accum + curr.count, 0);
     return summ ? props.count + summ : props.count;
@@ -20,6 +23,12 @@
     const folder = target.closest(".folder") as HTMLElement;
     folder?.classList.toggle("folder_open");
   }
+
+  watch(checked, () => {
+    checked.value
+      ? (rubricsStore.totalCountSumm += countSumm.value)
+      : (rubricsStore.totalCountSumm -= countSumm.value);
+  });
 </script>
 
 <template>
@@ -45,10 +54,15 @@
       >
         {{ props.title }} ({{ props.count }}, {{ countSumm }})
       </a>
+      <input
+        class="cursor-pointer"
+        type="checkbox"
+        v-model="checked"
+      />
     </li>
 
     <TreeView
-      class="folder_content hidden flex-col gap-2 pl-4"
+      class="folder_content hidden gap-2 pl-4"
       v-if="hasChildren"
       v-for="child in props.children"
       :key="child.id"
@@ -68,12 +82,18 @@
     >
       {{ props.title }} ({{ props.count }}, {{ countSumm }})
     </a>
+
+    <input
+      class="cursor-pointer"
+      type="checkbox"
+      v-model="checked"
+    />
   </li>
 </template>
 
 <style lang="scss" scoped>
   .text {
-    @apply border-b pb-1 text-gray-700 transition-all;
+    @apply text-gray-700 transition-all;
     &:hover {
       @apply text-blue-500;
     }
@@ -85,16 +105,5 @@
 
   .folder.folder_open > .folder_content {
     @apply flex;
-  }
-
-  .button {
-    @apply flex cursor-pointer items-center justify-center gap-1 rounded bg-gray-300 p-1 text-black transition-all;
-    &:hover,
-    &:focus {
-      @apply bg-gray-400 text-white;
-    }
-    &:active {
-      @apply scale-95 bg-gray-300;
-    }
   }
 </style>

@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ["shared/stores"],
+    dirs: ["shared/stores", "shared/types"],
     autoImport: true,
   },
   pinia: {

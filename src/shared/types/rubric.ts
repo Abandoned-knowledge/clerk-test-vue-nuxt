@@ -1,7 +1,7 @@
-export interface TreeViewItem {
+export interface RubricItem {
   id: number;
   title: string;
   url: string;
-  children: TreeViewItem[];
+  children: RubricItem[];
   count: number;
 }

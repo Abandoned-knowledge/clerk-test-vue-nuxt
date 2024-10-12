@@ -55,3 +55,14 @@ h3 {
 .toggle-lg {
   --h: 24px;
 }
+
+.button {
+  @apply flex cursor-pointer items-center justify-center gap-1 rounded bg-gray-300 p-1 text-black transition-all;
+  &:hover,
+  &:focus {
+    @apply bg-gray-400 text-white;
+  }
+  &:active {
+    @apply scale-95 bg-gray-300;
+  }
+}
