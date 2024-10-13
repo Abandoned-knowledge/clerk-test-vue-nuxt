@@ -69,7 +69,10 @@
     />
   </ul>
 
-  <li v-else>
+  <li
+    v-else
+    class="flex items-center gap-2"
+  >
     <a
       class="text ml-7"
       :href="`https://www.klerk.ru${rubric.url}`"

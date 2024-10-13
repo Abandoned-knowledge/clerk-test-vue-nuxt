@@ -5,12 +5,10 @@ export const useRubricStore = defineStore("rubric", () => {
   const showEmpty = ref<boolean>(false);
 
   async function fetchRubrics() {
-    const dataRubrics = await $fetch("https://www.klerk.ru/yindex.php/v3/event/rubrics");
+    const dataRubrics = await $fetch("/api/rubrics");
     rubrics.value = dataRubrics as RubricItem[];
 
-    const dataRubricsAllowEmpty = await $fetch(
-      "https://www.klerk.ru/yindex.php/v3/event/rubrics?allowEmpty=1",
-    );
+    const dataRubricsAllowEmpty = await $fetch("/api/rubrics?allowEmpty=1");
     rubricsAllowEmpty.value = dataRubricsAllowEmpty as RubricItem[];
   }
 
