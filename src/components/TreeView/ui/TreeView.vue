@@ -28,10 +28,6 @@
   );
 
   watch(checked, (newValue) => (newValue ? plus() : minus()));
-
-  onMounted(() => {
-    if (isChecked) plus();
-  });
 </script>
 
 <template>

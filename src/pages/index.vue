@@ -1,10 +1,9 @@
 <script setup lang="ts">
   const rubricStore = useRubricStore();
-  const allowEmpty = ref<boolean>(true);
   const folderIsOpen = ref<boolean>(true);
 
   const treeViewData = computed(() =>
-    allowEmpty.value ? rubricStore.rubricsAllowEmpty : rubricStore.rubrics,
+    rubricStore.showEmpty ? rubricStore.rubricsAllowEmpty : rubricStore.rubrics,
   );
 
   onMounted(() => rubricStore.fetchRubrics());
@@ -17,8 +16,8 @@
         Показать пустые
         <input
           type="checkbox"
-          v-model="allowEmpty"
           class="cursor-pointer"
+          @change="rubricStore.showEmpty = !rubricStore.showEmpty"
         />
       </label>
 
