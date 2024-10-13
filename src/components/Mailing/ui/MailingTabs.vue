@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import tabs from "../model/tabs";
   import { type tabItem } from "..";
+
   const currentContent = shallowRef<Component>(tabs[0].component);
   const bcStore = useBreadcrumbsStore();
 

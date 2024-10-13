@@ -1,4 +1,4 @@
-import MailingTabsFirst from "../ui/MailingTabsFirst.vue";
+import MailingTabsFirst from "../ui/MailingTabsFirst/MailingTabsFirst.vue";
 import MailingTabsTwo from "../ui/MailingTabsTwo.vue";
 import MailingTabsThree from "../ui/MailingTabsThree.vue";
 import { type tabItem } from "..";
