@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   srcDir: "./src",
   dir: {
     layouts: "app/layout",
+    public: "../public",
   },
   icon: {
     provider: "iconify",
