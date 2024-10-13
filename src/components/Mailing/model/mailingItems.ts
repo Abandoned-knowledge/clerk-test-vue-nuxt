@@ -12,6 +12,7 @@ export default [
     imagePath: imgPath1,
     list: ["Новости для бухгалтеров, ИП и директора", "Подборка статей за день"],
     receiversCount: "59 342",
+    formName: "mailing1",
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ export default [
     imagePath: imgPath2,
     list: ["Анализ, оценка и только самое главное", "Лучшие комменты юзеров в обзоре"],
     receiversCount: "37 480",
+    formName: "mailing2",
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export default [
     imagePath: imgPath3,
     list: ["Акции и скидки от лидеров рынка", "Те, кто подписался – экономят много денег"],
     receiversCount: "92 118",
+    formName: "mailing3",
   },
   {
     id: 4,
@@ -40,5 +43,6 @@ export default [
     imagePath: imgPath4,
     list: ["Никогда не пришлем платные вебинары", "Подборка топовых тем для вебинаров"],
     receiversCount: "92 082",
+    formName: "mailing4",
   },
 ];

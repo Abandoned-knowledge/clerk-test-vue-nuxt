@@ -49,6 +49,7 @@
           <input
             type="checkbox"
             v-model="checked"
+            :name="item.formName"
           />
           <div></div>
         </div>

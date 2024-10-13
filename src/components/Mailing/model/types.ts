@@ -12,4 +12,5 @@ export interface MailingItem {
   list: string[];
   count: string;
   imagePath: string;
+  formName: string;
 }
